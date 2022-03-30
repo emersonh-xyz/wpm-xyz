@@ -150,7 +150,7 @@ export default function Main() {
                     <button className="button is-danger is-fullwidth ">Stop</button>
                 </div>
             </div>
-
+                                         
 
         </main >
     )
