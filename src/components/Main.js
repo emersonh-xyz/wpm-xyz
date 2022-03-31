@@ -1,24 +1,26 @@
 import React, { useState, useEffect, useRef } from "react"
+import { useNavigate } from "react-router-dom";
 
 import randomWords from "random-words"
 
-export default function Main() {
+export default function Main({correctState}) {
 
-    const TIMER_LENGTH = 60; // Our timer length for the game
+    const TIMER_LENGTH = 5; // Our timer length for the game
     const WORD_COUNT = 1 // Our word count to retrieve
 
     const [word, setWord] = useState([]); // Return a reandom word for us to use
     const [countDown, setCountdown] = useState(TIMER_LENGTH) // Keep track of our games time length
     const [currInput, setCurrInput] = useState("") // Keep track of our current keyboard input
+    const [currWordIndex, setCurrWordIndex] = useState(0) // Keep track of our word index
     const [currCharIndex, setCurrCharIndex] = useState(-1) // Keep track of our current character index
     const [currChar, setCurrChar] = useState("") // Keep tracking our current character 
     const [status, setStatus] = useState("waiting") // Game manager for our status
-    const [correct, setCorrect] = useState(0) // Keep track of correct, 
+
     const [incorrect, setIncorrect] = useState(0) // Keep track of incorrect
 
     const textInput = useRef(null) // Reference our textbox
-    const [currWordIndex, setCurrWordIndex] = useState(0)
 
+    const navigate = useNavigate(); // Setup our navigation object
 
     useEffect(() => {
         setWord(generateNewWord()) // Generate a new word from "random-words"
@@ -31,21 +33,16 @@ export default function Main() {
         }
     }, [status]) // If our status changes lock us into the textbox
 
+
     function start() {
 
-        if (status === "finished") {
-            setWord(generateNewWord())
-            setCorrect(0)
-            setIncorrect(0)
-        }
         if (status !== "started") {
             setStatus("started")
-            let wordChar = Object.values(word)
             let interval = setInterval(() => {
                 setCountdown((prevCountdown) => {
                     if (prevCountdown === 0) { // If our interval reaches 0, restart
                         clearInterval(interval)
-                        setStatus("finished")
+                        navigate('/results');
                         return TIMER_LENGTH
                     } else {
                         return prevCountdown - 1 // Subtract 1 every 1 second
@@ -85,8 +82,8 @@ export default function Main() {
         const doesItMatch = wordToCompare === currInput
         console.log({ doesItMatch })
         if (doesItMatch) {
-            setCorrect(correct + 1)
-            console.log("correct: " + correct)
+            correctState.setCorrect(correctState.correct + 1)
+            console.log(correctState.correct)
 
         } else {
             setIncorrect(incorrect + 1)
@@ -120,6 +117,11 @@ export default function Main() {
         }
       }
 
+
+    function stop(){
+        navigate("/results")
+    }
+
     return (
         <main>
             <div className="section">
@@ -147,7 +149,7 @@ export default function Main() {
             <div className="section">
                 <div className="buttons">
                     <button onClick={start} className="button is-primary is-fullwidth ">Start</button>
-                    <button className="button is-danger is-fullwidth ">Stop</button>
+                    <button onClick={stop} className="button is-danger is-fullwidth ">Stop</button>
                 </div>
             </div>
                                          
