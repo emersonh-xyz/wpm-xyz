@@ -1,28 +1,35 @@
-import React from "react"
 
 import Navbar from "./components/Navbar.js";
 import Main from "./components/Main.js"
 import Results from "./components/Results.js";
-import { Route, Routes, Link } from "react-router-dom"
+import { Route, Routes } from "react-router-dom"
+import { useState } from "react";
 
 
 
 export default function App() {
+
+
+    const [correct, setCorrect] = useState(0)
+
+    const correctState = ({correct, setCorrect}) 
 
     return (
 
         <Routes>
             <Route path="/" element={
                 <div>
-                        <Navbar/>
-                        <Main/>
+                    <Navbar/>
+                    <Main 
+                    correctState={correctState}/>
                 </div>
              
             }/>
             <Route path="/results" element={
                 <div>
                     <Navbar/>
-                    <Results/>
+                    <Results
+                    correctState={correctState}/>
                 </div>
                 } />
         </Routes>
