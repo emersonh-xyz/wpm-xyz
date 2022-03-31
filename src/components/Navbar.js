@@ -1,48 +1,67 @@
 import React from "react"
 
 export default function Navbar() {
-    return (
-        <nav className="navbar" role="navigation" aria-label="main navigation">
-        <div className="navbar-brand">
-          <a className="navbar-item" href="/">
-            <p width="112" height="40">TypingTest.XYZ</p>
+  return (
+    <nav className="navbar" role="navigation" aria-label="main navigation">
+      <div className="navbar-brand">
+        <a className="navbar-item" href="/">
+          <p width="112" height="40">TypingTest.XYZ</p>
+        </a>
+
+        <a role="button" className="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
+
+      <div id="navbarBasicExample" className="navbar-menu">
+        <div className="navbar-start">
+          <a href="/" className="navbar-item">
+            Home
           </a>
-      
-          <a role="button" className="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
+
+
+
+          <div className="navbar-item has-dropdown is-hoverable">
+        <a className="navbar-link">
+          Settings
+        </a>
+
+        <div className="navbar-dropdown">
+          <a className="navbar-item">
+            Change timer
+          </a>
+          <a className="navbar-item">
+            Change
+          </a>
+          <a className="navbar-item">
+            Contact
+          </a>
+          <hr className="navbar-divider"/>
+          <a className="navbar-item">
+            Report an issue
           </a>
         </div>
-      
-        <div id="navbarBasicExample" className="navbar-menu">
-          <div className="navbar-start">
-            <a href="/"className="navbar-item">
-              Home
-            </a>
+      </div>
 
-      
-        
-              <a className="navbar-item">
-                Leaderboard
+
+
+        </div>
+
+        <div className="navbar-end">
+          <div className="navbar-item">
+            <div className="buttons">
+              <a className="button is-primary">
+                <strong>Sign up</strong>
               </a>
-      
-    
-          </div>
-      
-          <div className="navbar-end">
-            <div className="navbar-item">
-              <div className="buttons">
-                <a className="button is-primary">
-                  <strong>Sign up</strong>
-                </a>
-                <a className="button is-light">
-                  Log in
-                </a>
-              </div>
+              <a className="button is-light">
+                Log in
+              </a>
             </div>
           </div>
         </div>
-      </nav>
-    )
+      </div>
+    </nav>
+  )
 }
