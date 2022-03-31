@@ -5,8 +5,21 @@ import randomWords from "random-words"
 
 export default function Main({state}) {
 
-    const TIMER_LENGTH = 5; // Our timer length for the game
-    const WORD_COUNT = 1 // Our word count to retrieve
+
+    // Grab our prop data
+    const time = state.time
+    const wordCount = state.wordCount
+    const setWordCount = state.setWordCount
+    const charCount = state.charCount
+    const setCharCount = state.setCharCount
+    const correct = state.correct
+    const setCorrect = state.setCorrect
+    const incorrect = state.incorrect
+    const setIncorrect = state.setIncorrect    
+
+
+    const TIMER_LENGTH = time; // Our timer length for the game
+    const WORD_COUNT = 1 // Our word count for how many words to display to the user
 
     const [word, setWord] = useState([]); // Return a reandom word for us to use
     const [countDown, setCountdown] = useState(TIMER_LENGTH) // Keep track of our games time length
@@ -17,8 +30,9 @@ export default function Main({state}) {
     const [status, setStatus] = useState("waiting") // Game manager for our status
 
     const textInput = useRef(null) // Reference our textbox
-
     const navigate = useNavigate(); // Setup our navigation object
+
+
 
     useEffect(() => {
         setWord(generateNewWord()) // Generate a new word from "random-words"
@@ -34,16 +48,16 @@ export default function Main({state}) {
 
     function start() {
 
-        if (status !== "started") {
-            setStatus("started")
-            let interval = setInterval(() => {
+        if (status !== "started") { // If we aren't started we can now start
+            setStatus("started") // Start
+            let interval = setInterval(() => { // Make a new interval that counts down every second
                 setCountdown((prevCountdown) => {
                     if (prevCountdown === 0) { // If our interval reaches 0, restart
                         clearInterval(interval)
                         navigate('/results');
                         return TIMER_LENGTH
                     } else {
-                        return prevCountdown - 1 // Subtract 1 every 1 second
+                        return prevCountdown - 1 
                     }
                 })
             }, 1000)
@@ -58,13 +72,17 @@ export default function Main({state}) {
 
     function handleKeyDown({ keyCode, key }) {
         console.log(keyCode) // Log our keystroke 
-        if (currInput === word[0]) {
+        setCharCount(charCount + 1) // Add to our character count 
+        if (currInput === word[0]) { // If we have a match
             checkMatch() // Run found key functioon
             resetWord()
-        } else if (keyCode === 32) {
+            setWordCount(wordCount + 1)
+            setCurrCharIndex(-1)
+        } else if (keyCode === 32) { // Spacebar
             checkMatch()
             resetWord()
-        } else if (keyCode === 8) {
+            setWordCount(wordCount + 1)
+        } else if (keyCode === 8) { // Backspace
             setCurrCharIndex(currCharIndex - 1)
             setCurrChar("")
         } else {
@@ -80,12 +98,10 @@ export default function Main({state}) {
         const doesItMatch = wordToCompare === currInput
         console.log({ doesItMatch })
         if (doesItMatch) {
-            state.setCorrect(state.correct + 1)
-            console.log(state.correct)
+            setCorrect(correct + 1)
 
         } else {
-            state.setIncorrect(state.incorrect + 1)
-            console.log("incorrect: " + state.incorrect)
+            setIncorrect(incorrect + 1)
             
         }
     }
