@@ -4,7 +4,7 @@ export default function Navbar() {
     return (
         <nav className="navbar" role="navigation" aria-label="main navigation">
         <div className="navbar-brand">
-          <a className="navbar-item" href="https://bulma.io">
+          <a className="navbar-item" href="/">
             <p width="112" height="40">TypingTest.XYZ</p>
           </a>
       
