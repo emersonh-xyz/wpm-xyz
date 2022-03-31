@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import randomWords from "random-words"
 
-export default function Main({correctState}) {
+export default function Main({state}) {
 
     const TIMER_LENGTH = 5; // Our timer length for the game
     const WORD_COUNT = 1 // Our word count to retrieve
@@ -15,8 +15,6 @@ export default function Main({correctState}) {
     const [currCharIndex, setCurrCharIndex] = useState(-1) // Keep track of our current character index
     const [currChar, setCurrChar] = useState("") // Keep tracking our current character 
     const [status, setStatus] = useState("waiting") // Game manager for our status
-
-    const [incorrect, setIncorrect] = useState(0) // Keep track of incorrect
 
     const textInput = useRef(null) // Reference our textbox
 
@@ -82,12 +80,12 @@ export default function Main({correctState}) {
         const doesItMatch = wordToCompare === currInput
         console.log({ doesItMatch })
         if (doesItMatch) {
-            correctState.setCorrect(correctState.correct + 1)
-            console.log(correctState.correct)
+            state.setCorrect(state.correct + 1)
+            console.log(state.correct)
 
         } else {
-            setIncorrect(incorrect + 1)
-            console.log("incorrect: " + incorrect)
+            state.setIncorrect(state.incorrect + 1)
+            console.log("incorrect: " + state.incorrect)
             
         }
     }

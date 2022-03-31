@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react"
 
 
-export default function Results({correctState}) {
+export default function Results({state}) {
     
     
     return (
@@ -21,7 +21,7 @@ export default function Results({correctState}) {
                 <div className="column has-text-centered">
                     <p className="is-size-3">Accuracy:</p>
                     <p className="has-text-info is-size-1">
-                        {correctState.correct}
+                        {state.correct} / {state.incorrect}
                     </p>
                 </div>
             </div>

@@ -11,8 +11,9 @@ export default function App() {
 
 
     const [correct, setCorrect] = useState(0)
+    const [incorrect, setIncorrect] = useState(0)
 
-    const correctState = ({correct, setCorrect}) 
+    const state = ({correct, setCorrect, incorrect, setIncorrect}) 
 
     return (
 
@@ -21,7 +22,7 @@ export default function App() {
                 <div>
                     <Navbar/>
                     <Main 
-                    correctState={correctState}/>
+                    state={state}/>
                 </div>
              
             }/>
@@ -29,7 +30,7 @@ export default function App() {
                 <div>
                     <Navbar/>
                     <Results
-                    correctState={correctState}/>
+                    state={state}/>
                 </div>
                 } />
         </Routes>
