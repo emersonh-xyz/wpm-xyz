@@ -4,16 +4,33 @@ import Main from "./components/Main.js"
 import Results from "./components/Results.js";
 import { Route, Routes } from "react-router-dom"
 import { useState } from "react";
+import SharedResults from "./components/SharedResults.js";
 
 
 
 export default function App() {
 
     // Our global state variables that need to be loaded across components 
-    const [correct, setCorrect] = useState(0)
-    const [incorrect, setIncorrect] = useState(0)
+    const [correct, setCorrect] = useState(0) // Declare our total number of correct words
+    const [incorrect, setIncorrect] = useState(0) // Declare our total number of incorrect words 
+    const [time, setTime] = useState(5) // Our global time for how long the game lasts
+    const [wordCount, setWordCount] = useState(0) // Declare the total number of words the user types & skips
+    const [charCount, setCharCount] = useState(0) // Declare the total number of chars the user types
 
-    const state = ({correct, setCorrect, incorrect, setIncorrect}) 
+
+    // Load all of our state variables into a prop
+    const state = ({
+        correct, 
+        setCorrect, 
+        incorrect, 
+        setIncorrect, 
+        wordCount, 
+        setWordCount, 
+        charCount, 
+        setCharCount, 
+        time, 
+        setTime}) 
+
 
     return (
 
@@ -33,6 +50,13 @@ export default function App() {
                     state={state}/>
                 </div>
                 } />
+            <Route path="/shared-results" element={
+                <div>
+                    <Navbar/>
+                    <SharedResults
+                    state={state}/>
+                </div>
+            } />
         </Routes>
     );
 
