@@ -9,7 +9,7 @@ import { useState } from "react";
 
 export default function App() {
 
-
+    // Our global state variables that need to be loaded across components 
     const [correct, setCorrect] = useState(0)
     const [incorrect, setIncorrect] = useState(0)
 

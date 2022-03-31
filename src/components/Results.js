@@ -3,7 +3,10 @@ import React, { useState, useEffect, useRef } from "react"
 
 export default function Results({state}) {
     
-    
+
+    const correct = state.correct 
+    const incorrect = state.incorrect
+
     return (
         <div className="section">
 
@@ -21,7 +24,7 @@ export default function Results({state}) {
                 <div className="column has-text-centered">
                     <p className="is-size-3">Accuracy:</p>
                     <p className="has-text-info is-size-1">
-                        {state.correct} / {state.incorrect}
+                    {Math.round(correct / (correct + incorrect) * 100)}%
                     </p>
                 </div>
             </div>
