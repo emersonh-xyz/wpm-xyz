@@ -5,7 +5,7 @@ export default function Navbar() {
     <nav className="navbar" role="navigation" aria-label="main navigation">
       <div className="navbar-brand">
         <a className="navbar-item" href="/">
-          <p width="112" height="40">YourMOM.XYZ</p>
+          <p width="112" height="40">WPM.XYZ</p>
         </a>
 
         <a role="button" className="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
