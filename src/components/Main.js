@@ -73,18 +73,11 @@ export default function Main({state}) {
     function handleKeyDown({ keyCode, key }) {
         console.log(keyCode) // Log our keystroke 
         setCharCount(charCount + 1) // Add to our character count 
-        if (currInput === word[0]) { // If we have a match
-            checkMatch() // Run found key functioon
+        if (keyCode === 32) { // Spacebar
             resetWord()
             setWordCount(wordCount + 1)
-            setCurrCharIndex(-1)
-        } else if (keyCode === 32) { // Spacebar
-            checkMatch()
-            resetWord()
-            setWordCount(wordCount + 1)
-        } else if (keyCode === 8) { // Backspace
+        } else if (keyCode === 8 && (currCharIndex !== -1)) { // Backspace
             setCurrCharIndex(currCharIndex - 1)
-            setCurrChar("")
         } else {
             setCurrChar(key) // Represents
             setCurrCharIndex(currCharIndex + 1)
@@ -95,12 +88,13 @@ export default function Main({state}) {
 
     function checkMatch() {
         const wordToCompare = word[0]
-        const doesItMatch = wordToCompare === currInput
+        const doesItMatch = (wordToCompare === currInput)
+        console.log(wordToCompare)
+        console.log(currInput)
         console.log({ doesItMatch })
         if (doesItMatch) {
             setCurrInput("")
             setCorrect(correct + 1)
-
         } else {
             setCurrInput("")
             setIncorrect(incorrect + 1)
@@ -163,7 +157,7 @@ export default function Main({state}) {
                     </div>
                 </div>
        
-                <input ref={textInput} disabled={status !== "started"} className="input is-success " type="text" placeholder={word} onKeyUp={handleKeyDown} value={currInput} onChange={(e) => (setCurrInput(e.target.value))} />
+                <input ref={textInput} disabled={status !== "started"} className="input is-success " type="text" placeholder={word} onKeyUp={handleKeyDown} value={currInput} onChange={(e) => (setCurrInput(e.target.value.trim()))} />
             </div>
             <div className="section">
                 <div className="buttons">
