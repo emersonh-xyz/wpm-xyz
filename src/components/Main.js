@@ -125,7 +125,9 @@ export default function Main({state}) {
           }
         } else if (wordIdx === currWordIndex && currCharIndex >= word[currWordIndex].length) { // If our index is greater than the length of the word
           return 'has-background-danger'
-        } else {
+        } else if (word[0] == currInput){
+            return "has-background-success"
+        }else {
           return ''
         }
       }
