@@ -98,9 +98,11 @@ export default function Main({state}) {
         const doesItMatch = wordToCompare === currInput
         console.log({ doesItMatch })
         if (doesItMatch) {
+            setCurrInput("")
             setCorrect(correct + 1)
 
         } else {
+            setCurrInput("")
             setIncorrect(incorrect + 1)
             
         }
@@ -108,9 +110,9 @@ export default function Main({state}) {
 
     function resetWord(){
         checkMatch() // Check if our words are equal
-        setWord(generateNewWord()) // Reset back to default
-        setCurrInput("")
-        setCurrCharIndex(-1) // Reset back to default
+        setCurrCharIndex(-1)
+        setWord(generateNewWord()) 
+        setCurrInput("") // Reset back to default
     }
 
     function generateNewWord() {
@@ -121,10 +123,13 @@ export default function Main({state}) {
         if (wordIdx === currWordIndex && charIdx === currCharIndex && currChar && status !== 'finished') {
           if (char === currChar) {
             return 'has-background-success'
+          } else if (currInput === "") {
+            setCurrCharIndex(-1)
+            return 'has-text-warning'
           } else {
-            return 'has-background-danger'
+              return "has-background-danger"
           }
-        } else if (wordIdx === currWordIndex && currCharIndex >= word[currWordIndex].length) {
+        } else if (wordIdx === currWordIndex && currCharIndex >= word[currWordIndex].length) { // If our index is greater than the length of the word
           return 'has-background-danger'
         } else {
           return ''
@@ -162,8 +167,8 @@ export default function Main({state}) {
             </div>
             <div className="section">
                 <div className="buttons">
-                    <button onClick={start} className="button is-primary is-fullwidth ">Start</button>
-                    <button onClick={stop} className="button is-danger is-fullwidth ">Stop</button>
+                    <button onClick={start} disabled={status === "started"} className="button is-primary is-fullwidth ">Start</button>
+                    <button onClick={stop} disabled={status !== "started"}className="button is-danger is-fullwidth ">Stop</button>
                 </div>
             </div>
                                          

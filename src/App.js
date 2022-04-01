@@ -13,7 +13,7 @@ export default function App() {
     // Our global state variables that need to be loaded across components 
     const [correct, setCorrect] = useState(0) // Declare our total number of correct words
     const [incorrect, setIncorrect] = useState(0) // Declare our total number of incorrect words 
-    const [time, setTime] = useState(5) // Our global time for how long the game lasts
+    const [time, setTime] = useState(30) // Our global time for how long the game lasts
     const [wordCount, setWordCount] = useState(0) // Declare the total number of words the user types & skips
     const [charCount, setCharCount] = useState(0) // Declare the total number of chars the user types
 
