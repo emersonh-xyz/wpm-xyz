@@ -77,7 +77,7 @@ export default function Main({state}) {
             resetWord()
             setWordCount(wordCount + 1)
         } else if (keyCode === 8 && (currCharIndex !== -1)) { // Backspace
-             // Highlight our character green if it matches
+            setCurrChar(word[0].charAt(currCharIndex - 1)) // Highlight our character green if it matches
             setCurrCharIndex(currCharIndex - 1)
         } else {
             setCurrChar(key) // Represents
