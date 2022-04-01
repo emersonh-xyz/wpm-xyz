@@ -5,7 +5,7 @@ export default function Navbar() {
     <nav className="navbar" role="navigation" aria-label="main navigation">
       <div className="navbar-brand">
         <a className="navbar-item" href="/">
-          <p width="112" height="40">TypingTest.XYZ</p>
+          <p width="112" height="40">WPM.XYZ</p>
         </a>
 
         <a role="button" className="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
@@ -23,29 +23,13 @@ export default function Navbar() {
 
 
 
-          <div className="navbar-item has-dropdown is-hoverable">
+          <div className="navbar-item is-hoverable">
         <a className="navbar-link">
           Settings
         </a>
 
-        <div className="navbar-dropdown">
-          <a className="navbar-item">
-            Change timer
-          </a>
-          <a className="navbar-item">
-            Change
-          </a>
-          <a className="navbar-item">
-            Contact
-          </a>
-          <hr className="navbar-divider"/>
-          <a className="navbar-item">
-            Report an issue
-          </a>
+
         </div>
-      </div>
-
-
 
         </div>
 
