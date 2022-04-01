@@ -77,6 +77,7 @@ export default function Main({state}) {
             resetWord()
             setWordCount(wordCount + 1)
         } else if (keyCode === 8 && (currCharIndex !== -1)) { // Backspace
+             // Highlight our character green if it matches
             setCurrCharIndex(currCharIndex - 1)
         } else {
             setCurrChar(key) // Represents
@@ -115,17 +116,17 @@ export default function Main({state}) {
 
     function getCharClass(wordIdx, charIdx, char) {
         if (wordIdx === currWordIndex && charIdx === currCharIndex && currChar && status !== 'finished') {
-          if (char === currChar) {
+          if (char === currChar) { // Everytime a character matches
             return 'has-background-success'
-          } else if (currInput === "") {
+          } else if (currInput === "") { // If we have no words reset back to default
             setCurrCharIndex(-1)
             return 'has-text-warning'
-          } else {
+          } else if(char !== currChar) {
               return "has-background-danger"
           }
         } else if (wordIdx === currWordIndex && currCharIndex >= word[currWordIndex].length) { // If our index is greater than the length of the word
           return 'has-background-danger'
-        } else if (word[0] == currInput){
+        } else if (word[0] == currInput){ // If our word mathces our current input, highlight it all green
             return "has-background-success"
         }else {
           return ''
