@@ -37,7 +37,7 @@ export default function SharedResults({ state }) {
             </div>
             <div className="section">
                 <div className="buttons">
-                <div className="button is-fullwidth is-primary">Try it yourself!</div>
+                <div onClick={() => navigate("/")} className="button is-fullwidth is-primary">Try it yourself</div>
                 </div>
             </div>
 

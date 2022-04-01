@@ -61,7 +61,7 @@ export default function Results({ state }) {
             </div>
             <div className="section">
                 <div className="buttons">
-                <div className="button is-fullwidth is-primary">Play again</div>
+                <div onClick={() => navigate("/")} className="button is-fullwidth is-primary">Play again</div>
                 <div onClick={() => GenerateURL()} className="button is-fullwidth is-link">Share your score</div>
                 </div>
             </div>
